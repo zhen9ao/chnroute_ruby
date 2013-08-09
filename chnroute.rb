@@ -5,7 +5,8 @@ require 'uri'
 require 'ipaddr'
 
 def fetch_apnic_data
-  regex = Regexp.new('apnic\|cn\|ipv4\|[0-9\.]+\|[0-9]+\|[0-9]+\|a.*', Regexp::IGNORECASE)
+  regex = Regexp.new('apnic\|cn\|ipv4\|[0-9\.]+\|[0-9]+\|[0-9]+\|a.*', 
+                     Regexp::IGNORECASE)
 
   uri = URI('http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest')
   uri_test = URI('http://localhost/~jack/delegated-apnic-latest')
@@ -30,7 +31,8 @@ def generate_mac
 #!/bin/sh
 export PATH="/bin:/sbin:/usr/sbin:/usr/bin"
 
-OLDGW=`netstat -nr | grep '^default' | grep 'en0\\|en1' | grep -v 'ppp' | sed 's/default *\\([0-9\.]*\\) .*/\\1/'`
+OLDGW=`netstat -nr | grep '^default' | grep 'en0\\|en1' | grep -v 'ppp' \
+| sed 's/default *\\([0-9\.]*\\) .*/\\1/'`
 
 if [ ! -e /tmp/pptp_oldgw ]; then
     echo "${OLDGW}" > /tmp/pptp_oldgw
