@@ -9,7 +9,7 @@ def fetch_apnic_data
 
   uri = URI('http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest')
   uri_test = URI('http://localhost/~jack/delegated-apnic-latest')
-  data = Net::HTTP.get(uri_test)
+  data = Net::HTTP.get(uri)
   cndata = data.scan(regex)
 
   results = []
