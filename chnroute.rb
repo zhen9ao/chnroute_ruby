@@ -65,6 +65,13 @@ ODLGW=`cat /tmp/pptp_oldgw`
     downfile.puts "route delete #{start_ip}#{cidr} ${OLDGW}\n"
   end
 
+  File.open("company-ip.txt") do |file|
+    file.each_line do |line|
+      upfile.puts "route add #{line[0..-2]} ${OLDGW}\n"
+      downfile.puts "route delete #{line[0..-2]} ${OLDGW}\n"
+    end
+  end
+
   upfile.close
   downfile.close
 end
