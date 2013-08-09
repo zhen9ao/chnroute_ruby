@@ -16,7 +16,9 @@ def fetch_apnic_data
   results = []
   cndata.each do |d|
     a,b,c, start_ip, value, f,g = d.split('|')
+    # netmask is for the 255.255.255.0 format
     netmask = IPAddr.new(0xffffffff ^ (value.to_i - 1), Socket::AF_INET).to_s
+    # cidr is for the 10.0.1.0/24 format
     cidr = (0xffffffff ^ (value.to_i - 1)).to_s(2).count("1")
     results << [start_ip, "/#{cidr}"]
 #    return results if results.size > 10
