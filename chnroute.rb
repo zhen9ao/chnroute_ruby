@@ -50,8 +50,8 @@ fi
 ODLGW=`cat /tmp/pptp_oldgw`
   END_OF_STRING
 
-  upfile = File.new("ip-up-ruby", "w")
-  downfile = File.new("ip-down-ruby", "w")
+  upfile = File.new("ip-up", "w")
+  downfile = File.new("ip-down", "w")
 
   upfile.puts "#{upscript_header}\n"
   downfile.puts "#{downscript_header}\n"
