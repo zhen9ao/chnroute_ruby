@@ -13,7 +13,7 @@ def fetch_apnic_data
   data = Net::HTTP.get(uri)
   cndata = data.scan(regex)
 
-  results = []
+  results ||= []
   cndata.each do |d|
     a,b,c, start_ip, value, f,g = d.split('|')
     # netmask is for the 255.255.255.0 format
